@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,21 +27,30 @@ public class AnimalArrayAdaptor extends ArrayAdapter<Animal> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.custom_row, null);
+        View row = convertView;
+        if (convertView == null) {
+            // This is an expensive operation! Avoid and reuse as much as possible.
+            row = inflater.inflate(R.layout.custom_row, parent, false);
+        }
 
         TextView textView = (TextView) row.findViewById(R.id.label);
         textView.setText(animals.get(position).getName());
 
+        ImageView imageView = (ImageView) row.findViewById(R.id.icon);
         try {
-            ImageView imageView = (ImageView) row.findViewById(R.id.icon);
-            Drawable filename = animals.get(position).getFilename();
-
-            ContextCompat.getDrawable(context, R.drawable.filename);
-            imageView.setImageResource(filename);
+            String filename = animals.get(position).getFilename();
+            InputStream inputStream = getContext().getAssets().open(filename);
+            Drawable drawable = Drawable.createFromStream(inputStream, null);
+            imageView.setImageDrawable(drawable);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ToggleButton tb = (ToggleButton) row.findViewById(R.id.toggle);
+        tb.setText(null);
+        tb.setTextOn(null);
+        tb.setTextOff(null);
+
         return row;
     }
 }

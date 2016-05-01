@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable;
 
 public class Animal {
     private String name;
-    private int filename;
+    private String filename;
 
-    public Animal(String name, int filename) {
+    public Animal(String name, String filename) {
         this.name = name;
         this.filename = filename;
     }
@@ -16,7 +16,7 @@ public class Animal {
         return name;
     }
 
-    public int getFilename() {
+    public String getFilename() {
         return filename;
     }
 }
