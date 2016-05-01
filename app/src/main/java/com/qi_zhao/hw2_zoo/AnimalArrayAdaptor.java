@@ -1,5 +1,8 @@
 package com.qi_zhao.hw2_zoo;
 
+/**
+ * Created by qizhao on 5/1/16.
+ */
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
