@@ -5,10 +5,13 @@ package com.qi_zhao.hw2_zoo;
  */
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,6 +40,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         animals.add(new Animal("Pink Pig", "pig.png", desc[2]));
         animals.add(new Animal("Orange Tiger", "tiger.png", desc[3]));
         animals.add(new Animal("Green Turtle", "turtle.png", desc[4]));
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle("Zootopia Animals");
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setHomeButtonEnabled(true);
 
         ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(new AnimalArrayAdaptor(this, R.layout.custom_row, animals));
@@ -49,5 +58,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent=new Intent(MainActivity.this, Details.class);
         intent.putExtra("animal", animal);
         startActivity(intent);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+
+            case R.id.information:
+                Intent intent2=new Intent(MainActivity.this, Information.class);
+                startActivity(intent2);
+                break;
+            case R.id.uninstall:
+                uninstall();
+                break;
+            default:
+                toast("unknown action ...");
+        }
+
+        return true;
+    }
+    private void toast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+    private void uninstall() {
+        Uri packageURI = Uri.parse("com.qi_zhao.hw2_zoo");
+        Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+        startActivity(uninstallIntent);
     }
 }

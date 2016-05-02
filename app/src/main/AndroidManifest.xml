@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.qi_zhao.hw2_zoo">
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -16,12 +17,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Details">
+            android:name=".Details"
+            android:parentActivityName="com.qi_zhao.hw2_zoo.MainActivity" >
             <intent-filter>
                 <action android:name="com.otz.zoonew.Detail" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.qi_zhao.hw2_zoo.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Information"
+            android:parentActivityName="com.qi_zhao.hw2_zoo.MainActivity" >
+            <intent-filter>
+                <action android:name="com.otz.zoonew.Information" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.qi_zhao.hw2_zoo.MainActivity" />
         </activity>
     </application>
 
