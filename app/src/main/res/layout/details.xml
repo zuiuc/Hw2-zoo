@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#ECECEC">
 
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +28,5 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/textView2"
         android:layout_gravity="center"
-        android:gravity="center"
         android:layout_weight="0.12" />
 </LinearLayout>

@@ -2,8 +2,8 @@ package com.qi_zhao.hw2_zoo;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -41,7 +41,7 @@ public class Details  extends AppCompatActivity {
         TextView textView1=(TextView)findViewById(R.id.textView2);
 
         try {
-            String filename = animal.getFilename();
+            String filename = animal.getFilenameB();
             InputStream inputStream = getAssets().open(filename);
             Drawable drawable = Drawable.createFromStream(inputStream, null);
             imageView.setImageDrawable(drawable);
@@ -67,21 +67,24 @@ public class Details  extends AppCompatActivity {
         switch (id) {
 
             case R.id.information:
-                toast("About action ...");
+                Intent intent2=new Intent(Details.this, Information.class);
+                startActivity(intent2);
                 break;
             case R.id.uninstall:
-                toast("Home button ...");
+                uninstall();
                 break;
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
             default:
-                toast("unknown action ...");
+
         }
 
         return super.onOptionsItemSelected(item);
     }
     private void toast(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+    private void uninstall() {
+        Uri packageURI = Uri.parse("package:com.qi_zhao.hw2_zoo");
+        Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+        startActivity(uninstallIntent);
     }
 }

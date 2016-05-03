@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#ECECEC">
 
     <TextView
         android:layout_width="198dp"
@@ -12,7 +13,17 @@
         android:id="@+id/textView3"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_weight="0.21" />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#9E3B33"
+        android:layout_weight="0.16" />
+
+    <ImageView
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/city"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="match_parent"
@@ -23,15 +34,17 @@
         android:id="@+id/textView4"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_weight="0.21" />
+        android:textColor="#E48743"
+        android:textSize="20sp"
+        android:layout_weight="0.22" />
 
     <Button
-        android:layout_width="188dp"
-        android:layout_height="wrap_content"
-        android:text="Dial"
+        android:layout_width="87dp"
+        android:layout_height="69dp"
         android:id="@+id/button"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_weight="0.21"
-        android:onClick="myClickHandler" />
+        android:onClick="myClickHandler"
+        android:background="@drawable/phonecall"
+        android:layout_weight="0.05" />
 </LinearLayout>
